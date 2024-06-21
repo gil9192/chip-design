@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Initialize",
+            "type": "shell",
+            "command": "New-Item -Path work -ItemType Directory",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared", 
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "foreach ($item in (Get-ChildItem -Filter *.v).Name){vlog -reportprogress 300 -work work $item}",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared", 
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Simulate",
+            "type": "shell",
+            "command": "vsim work.$([System.IO.Path]::GetFileNameWithoutExtension('${input:users_input}'))",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+        }
+    ],
+    "inputs": [
+        {
+            "id": "users_input",
+            "type": "promptString",
+            "description": "Enter file to simulate:"
+        }
+    ]
+}
