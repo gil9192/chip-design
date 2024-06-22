@@ -17,7 +17,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "foreach ($item in (Get-ChildItem -Filter *.v).Name){vlog -reportprogress 300 -work work $item}",
+            "command": "Get-ChildItem | Where-Object { $_.Extension -eq '.v' -or $_.Extension -eq '.sv' } | Select-Object -ExpandProperty Name | ForEach-Object { vlog -reportprogress 300 -work work $_ }",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
