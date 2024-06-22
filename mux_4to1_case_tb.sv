@@ -1,11 +1,11 @@
 `timescale 1ps/1ps
 
-module mux_4to1_if_tb;
+module mux_4to1_case_tb;
     reg [3:0] t_datain;
 	reg [1:0] t_select;
 	wire t_outd;
     
-    mux_4to1_if dut1 (.datain(t_datain), .select(t_select), .outd(t_outd));
+    mux_4to1_case dut1 (.datain(t_datain), .select(t_select), .outd(t_outd));
 
     initial begin
         #0 
