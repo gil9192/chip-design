@@ -3,3 +3,4 @@ transcript
 vsim.wlf
 modelsim.ini
 old_dut
+wlf*
