@@ -6,13 +6,12 @@ module adder (
     input clk,
     input rst);
 
-    always @(rst) begin
-        Sum <= 0;
-    end
-
-    always @(posedge clk) begin
-        if ((enable) && (~rst)) begin
-            Sum <= A + B;
+    always @(posedge clk, posedge rst) begin
+        if (rst) begin
+            Sum <= 0;
         end 
+        else if(enable) begin
+            Sum <= A + B;
+        end
     end
 endmodule
