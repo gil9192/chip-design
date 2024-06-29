@@ -23,20 +23,6 @@ module test_counter;
     dut_error_num = 0;
   end
 
-  initial @(terminate_sim) begin : TERMINATE_SIMULATION
-    $display("#############################");
-    $display("Terminating simulation");
-      if (dut_error_num) begin
-        $display("Simulation Result: Failed");
-      end
-      else begin
-        $display("Simulation Result: Passed");
-      end
-      $display("Mismatches: %d", dut_error_num);
-      $display("#############################");
-    #20 $finish;
-  end
-
   initial begin : CLK_GENERATOR
       clk = 0;
       #10 forever #10 clk = !clk;
@@ -52,6 +38,20 @@ module test_counter;
         rst_n = 1;
         -> rst_done;
     end
+  end
+
+  initial @(terminate_sim) begin : TERMINATE_SIMULATION
+    $display("#############################");
+    $display("Terminating simulation");
+      if (dut_error_num) begin
+        $display("Simulation Result: Failed");
+      end
+      else begin
+        $display("Simulation Result: Passed");
+      end
+      $display("Mismatches: %d", dut_error_num);
+      $display("#############################");
+    #20 $finish;
   end
 
   initial	begin : TEST_CASE
